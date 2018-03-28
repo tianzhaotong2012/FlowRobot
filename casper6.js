@@ -1,6 +1,11 @@
 function x(xpath) { return { type: 'xpath', path: xpath }; }
 
 var casper = require('casper').create();
+var fs = require('fs');
+var __dirname = fs.dirname(fs.absolute(phantom.casperScript));
+console.log(__dirname);
+
+casper.options.waitTimeout = 900000;
 
 casper.userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36');  
 
@@ -9,7 +14,7 @@ casper.options.viewportSize = {width: 1920, height: 965};
 casper.start('http://m.baidu.com/');
 
 casper.then(function() {
-   this.capture('baidu-start.png');
+   this.capture(__dirname + '/baidu-start.png');
 });
 
 casper.then(function() {
@@ -25,18 +30,18 @@ casper.then(function() {
 }); 
 
 casper.then(function() {
-   this.capture('baidu-search-results.png');
+   this.capture(__dirname + '/baidu-search-results.png');
 });
 
 casper.then(function() {
 
-casper.waitForSelector(x('//*[@id="results"]/div[1]/div[1]/a'), function() {
+casper.waitForSelector(x('//span[contains(text(),"www.goolzhi.com")]/../../../a'), function() {
         console.log('button shown');
 
-        casper.click(x('//*[@id="results"]/div[1]/div[1]/a'));
-	  this.wait(6000,function() {  
+        casper.click(x('//span[contains(text(),"www.goolzhi.com")]/../../../a'));
+	  this.wait(3000,function() {  
     			this.echo('search Successfully.'); 
-			casper.capture('ok.png');
+			casper.capture(__dirname + '/ok.png');
   	   });  
 });
 
@@ -67,7 +72,7 @@ casper.waitForSelector('#mainbox > div:nth-child(1) > div > div > div.fg > ul > 
         casper.click('#mainbox > div:nth-child(1) > div > div > div.fg > ul > li.pbox > div.post-txt > div > h2 > a');
 	  this.wait(6000,function() {  
     			this.echo('search Successfully.'); 
-			casper.capture('ok.png');
+			casper.capture(__dirname + '/ok.png');
   	   });  
 });
 
@@ -82,7 +87,7 @@ casper.waitForSelector('#mainbox > div:nth-child(1) > div > div > div.fg > ul > 
 
 
 casper.then(function() {
-   this.capture('baidu-click-results.png');
+   this.capture(__dirname + '/baidu-click-results.png');
 }); 
 
 casper.run();

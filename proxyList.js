@@ -4,7 +4,7 @@ var Promise = require("bluebird");
 var fs = require("fs");
 require('shelljs/global');
 
-var execStr = 'rm -rf proxyIP.txt && touch proxyIP.txt';
+var execStr = 'rm -rf ' + __dirname + '/proxyIP.txt && touch ' + __dirname + '/proxyIP.txt';
 var data = exec(execStr,{silent:true}).stdout;
 
 function getProxyList() {
@@ -82,7 +82,7 @@ getProxyList().then(function (proxyList) {
 
                 if (ret) {
                     console.log(`验证成功${proxyurl}==>> ${ret.address}`);
-			 fs.appendFileSync("proxyIP.txt",proxyurl+ "\n");
+			 fs.appendFileSync(__dirname + "/proxyIP.txt",proxyurl+ "\n");
                 }else{
 			 //console.log(`${body}`);	
 			}

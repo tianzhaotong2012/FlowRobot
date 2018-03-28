@@ -9,3 +9,6 @@ export PATH=$PATH:/var/www/html/FlowRobot/phantomjs/bin
 timeout 120s node /var/www/html/FlowRobot/proxyList.js 
 
 node /var/www/html/FlowRobot/robot.js >> /var/www/html/FlowRobot/log
+
+59 * * * * sh /var/www/html/FlowRobot/proxyList.sh
+50 */12 * * * sh /var/www/html/FlowRobot/robot.sh

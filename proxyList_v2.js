@@ -56,7 +56,7 @@ getProxyList().then(function (proxyList) {
 
     var targetOptions = {
         method: 'GET',
-        url: 'http://ip.chinaz.com/getip.aspx',
+        //url: 'http://ip.chinaz.com/getip.aspx',
 	  //url: 'http://47.90.92.126/MonitorProxy/monitor_search.php',
         timeout: 8000,
         encoding: null,
@@ -67,7 +67,9 @@ getProxyList().then(function (proxyList) {
 
         console.log(`testing ${proxyurl}`);
 
-        targetOptions.proxy = 'http://' + proxyurl;
+        //targetOptions.proxy = 'http://' + proxyurl;
+        var ipArr = proxyurl.split(':');
+        targetOptions.url = 'http://ip.taobao.com/service/getIpInfo.php?ip=' + ipArr[0]; 
         request(targetOptions, function (error, response, body) {
             try {
                 if (error) throw error;
@@ -75,8 +77,9 @@ getProxyList().then(function (proxyList) {
                 //console.log(body);
                 eval(`var ret = ${body}`);
                 if (ret) {
+                    ret.address = ret.data.country;
                     console.log(`验证成功${proxyurl}==>> ${ret.address}`);
-                    var isChina = ret.address.match(/省*市*/g);
+                    var isChina = ret.address.match(/中国/g);
                     var language;
                     if(isChina != null){
                         language = 'zh-cn';

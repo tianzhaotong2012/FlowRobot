@@ -49,7 +49,7 @@ r1.on('line', (line) => {
 	}
 	if(type == 6){
 		console.log("66666");
-		console.log(execStr7);
+		console.log(execStr8);
 		var data = exec(execStr7,{silent:true}).stdout;
 		var data = exec(execStr8,{silent:true}).stdout;
 	}

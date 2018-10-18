@@ -170,34 +170,34 @@ casper.waitForSelector(x('//span[contains(text(),"www.360wiki.cn")]/../../../a')
 
 });
 
-var type = Math.floor(Math.random()*2+5);
+/*var type = Math.floor(Math.random()*2+5);
 
 
 if (type == 5) {
 
-casper.then(function() {
+      casper.then(function() {
 
-casper.waitForSelector('body > div.container.svg-icon-box > div > div:nth-child(6) > a', function() {
-    this.click('body > div.container.svg-icon-box > div > div:nth-child(6) > a');
-},function(){
-    this.echo('failed founding #nocaptcha', 'INFO');
-});
+            casper.waitForSelector('body > div.container.svg-icon-box > div > div:nth-child(6) > a', function() {
+                  this.click('body > div.container.svg-icon-box > div > div:nth-child(6) > a');
+            },function(){
+                  this.echo('failed founding #nocaptcha', 'INFO');
+            });
 
-});
+      });
 
-casper.then(function() {
+      casper.then(function() {
 
-casper.waitForSelector('#leftcolumn > ul:nth-child(11) > li:nth-child(9) > a', function() {
-        console.log('button shown');
+            casper.waitForSelector('#leftcolumn > ul:nth-child(11) > li:nth-child(9) > a', function() {
+                console.log('button shown');
 
-        casper.click('#leftcolumn > ul:nth-child(11) > li:nth-child(9) > a');
-    this.wait(6000,function() {  
-          this.echo('search Successfully.'); 
-      casper.capture(__dirname + '/ok-360wiki-v2.png');
-       });  
-});
+                casper.click('#leftcolumn > ul:nth-child(11) > li:nth-child(9) > a');
+                this.wait(6000,function() {  
+                      this.echo('search Successfully.'); 
+                      casper.capture(__dirname + '/ok-360wiki-v2.png');
+                });  
+            });
 
-});
+      });
 
 };
 
@@ -205,27 +205,78 @@ casper.waitForSelector('#leftcolumn > ul:nth-child(11) > li:nth-child(9) > a', f
 
 if (type == 6) {
   
+      casper.then(function() {
+
+          casper.waitForSelector('body > div.container.svg-icon-box > div > div:nth-child(6) > a', function() {
+              console.log('button shown');
+
+              casper.click('body > div.container.svg-icon-box > div > div:nth-child(6) > a');
+              this.wait(6000,function() {  
+                  this.echo('search Successfully.'); 
+                  casper.capture(__dirname + '/ok-360wiki-v2.png');
+              });  
+          });
+
+      });
+
+};*/
+
+
 casper.then(function() {
 
-casper.waitForSelector('body > div.container.svg-icon-box > div > div:nth-child(6) > a', function() {
-        console.log('button shown');
+        var elementArr = [
+           'body > div.container.svg-icon-box > div > div:nth-child(1) > a',
+           'body > div.container.svg-icon-box > div > div:nth-child(2) > a',
+           'body > div.container.svg-icon-box > div > div:nth-child(3) > a',
+           'body > div.container.svg-icon-box > div > div:nth-child(4) > a',
+           'body > div.container.svg-icon-box > div > div:nth-child(5) > a',
+           'body > div.container.svg-icon-box > div > div:nth-child(6) > a'
+        ];
 
-        casper.click('body > div.container.svg-icon-box > div > div:nth-child(6) > a');
-    this.wait(6000,function() {  
-          this.echo('search Successfully.'); 
-      casper.capture(__dirname + '/ok-360wiki-v2.png');
-       });  
+        var n = Math.floor(Math.random() * elementArr.length + 1)-1;
+        
+	this.wait(2000,function(){
+		console.log(elementArr[n]);
+	});
+
+        casper.waitForSelector(elementArr[n], function() {
+            this.click(elementArr[n]);
+        },function(){
+            this.echo('failed founding #nocaptcha', 'INFO');
+        });
+
 });
-
-});
-
-
-};
-
-
 
 casper.then(function() {
    this.capture(__dirname + '/baidu-click-360wiki-results-v2.png');
 }); 
+
+casper.then(function() {
+
+        var elementArr = [
+	         '#leftcolumn > ul:nth-child(2) > li:nth-child(1) > a',
+           '#leftcolumn > ul:nth-child(5) > li:nth-child(1) > a',
+           '#leftcolumn > ul:nth-child(5) > li:nth-child(2) > a',
+           '#leftcolumn > ul:nth-child(5) > li:nth-child(3) > a',
+           '#leftcolumn > ul:nth-child(8) > li:nth-child(1) > a',
+           '#leftcolumn > ul:nth-child(8) > li:nth-child(2) > a',
+           '#leftcolumn > ul:nth-child(8) > li:nth-child(3) > a'
+        ];
+
+        var n = Math.floor(Math.random() * elementArr.length + 1)-1;
+        console.log(elementArr[n]); 
+	
+	this.wait(4000,function(){
+		console.log(elementArr[n]);
+	});	
+
+        casper.waitForSelector(elementArr[n], function() {
+            this.click(elementArr[n]);
+        },function(){
+            console.log("failed founding"+elementArr[n]);
+            this.echo('failed founding #nocaptcha', 'INFO');
+        });
+
+});
 
 casper.run();

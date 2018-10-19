@@ -82,8 +82,15 @@ getProxyList().then(function (proxyList) {
                 eval(`var ret = ${body}`);
                 if (ret) {
                     ret.address = ret.data.country;
-                    console.log(`验证成功${proxyurl}==>> ${ret.address}`);
-                    var isChina = ret.address.match(/中国/g);
+                    console.log(`验证${proxyurl}==>> ${ret.address}`);
+                    if(ret.address == undefined)
+		    {
+			ret.address='中国';
+			console.log(`   >>验证失败${proxyurl} 纠正为${ret.address}`);
+		    }else{
+			console.log(`   >>验证成功${proxyurl} ==>>  ${ret.address}`);
+		    }		    
+		    var isChina = ret.address.match(/中国/g);
                     var language;
                     if(isChina != null){
                         language = 'zh-cn';

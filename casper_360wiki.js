@@ -270,6 +270,8 @@ casper.then(function() {
 		console.log(elementArr[n]);
 	});	
 
+	this.capture(__dirname + '/capture-360wiki-homepage-v2.png');
+
         casper.waitForSelector(elementArr[n], function() {
             this.click(elementArr[n]);
         },function(){

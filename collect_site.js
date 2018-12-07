@@ -9,7 +9,7 @@ var options = {
 	gzip: true,
         encoding: null,
         headers: {
-		'Authorization': 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6IjEzMzc3MjYwODVAcXEuY29tIiwiaWF0IjoxNTQ0MDA1MjYwLCJuYmYiOjE1NDQwMDUyNjAsImV4cCI6MTU0NDA0ODQ2MH0.6o0cf7X0CRdmMFK9mXkcv-5mX0uePTtiyP9CpG6qmaU'
+		'Authorization': 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6IjEzMzc3MjYwODVAcXEuY29tIiwiaWF0IjoxNTQ0MTc5MzMxLCJuYmYiOjE1NDQxNzkzMzEsImV4cCI6MTU0NDIyMjUzMX0.CNr_gvP6JXa2pPFetLqIgMrxpp14WcZLQm1cNUWfsrQ'
 	},
 };
 
@@ -24,5 +24,5 @@ request(options, function (error, response, body){
 });
 
 //uniq domainList
-var execStr = 'uniq ' + __dirname + '/domainList.txt >> ' + __dirname + '/domainListUniq.txt';
+var execStr = 'sort -u ' + __dirname + '/domainList.txt > ' + __dirname + '/domainListUniq.txt';
 exec(execStr,{silent:true}).stdout;

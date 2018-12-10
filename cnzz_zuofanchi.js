@@ -1,3 +1,14 @@
+var system = require('system');
+console.log('args:',system.args);
+if (system.args.length < 5 ){
+	console.log('Usage: bin/casperjs cnzz_XXX.js URL');
+	console.log('args:',system.args);
+    	phantom.exit(1);	
+}
+var targetUrl = system.args[4];
+window.frUrl = system.args[4];
+console.log('targetUrl:',targetUrl);
+
 function getOneUA(){
         var fs = require("fs");
         var __dirname = fs.dirname(fs.absolute(phantom.casperScript));
@@ -111,13 +122,14 @@ casper.then(function() {
 });
 
 casper.then(function(){
-	this.evaluate(function(){
+	this.evaluate(function(itargetUrl){
+		console.log("URL:",itargetUrl);
 		var link = document.createElement('a');
-		link.setAttribute('href', 'http://www.zuofanchi.cn/archives/28586');
+		link.setAttribute('href', itargetUrl);
 		link.setAttribute('id', "myTargetUrl");
-		link.innerHTML="[zuofanchi.cn]";
+		link.innerHTML=itargetUrl;
 		document.body.appendChild(link);
-	});
+	},targetUrl);
 });
 
 casper.then(function() {
@@ -131,7 +143,7 @@ casper.then(function() {
 casper.then(function() {
 
 	this.wait(2000,function(){
-		this.capture(__dirname + '/cnzz_zuofanchi.png');
+		this.capture(__dirname + '/cnzz_xxxx.png');
 	});
 
 });

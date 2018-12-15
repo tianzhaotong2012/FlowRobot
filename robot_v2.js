@@ -41,17 +41,20 @@ r1.on('line', (line) => {
 	var type = Math.floor(Math.random()*2+5);
 	var execStr7 = 'timeout 600s ' + __dirname + '/node_modules/casperjs/bin/casperjs --ignore-ssl-errors=yes --ssl-protocol=any --proxy=' + ipObj.ip + ' --cookies-file=' + __dirname + '/cookies_v2.txt ' + __dirname + '/casper7_v2.js >> ' + __dirname + '/log_v2';
 	var execStr8 = 'timeout 600s ' + __dirname + '/node_modules/casperjs/bin/casperjs --ignore-ssl-errors=yes --ssl-protocol=any --proxy=' + ipObj.ip + ' --cookies-file=' + __dirname + '/cookies_360wiki.txt ' + __dirname + '/casper_360wiki.js >> ' + __dirname + '/log_v3';
+	var execStr9 = 'timeout 600s ' + __dirname + '/node_modules/casperjs/bin/casperjs --ignore-ssl-errors=yes --ssl-protocol=any --proxy=' + ipObj.ip + ' --cookies-file=' + __dirname + '/cookies_ga.txt ' + __dirname + '/casper_ga.js >> ' + __dirname + '/log_v4';
 	if(type == 5){
 		console.log("55555");
 		console.log(execStr7);
 		var data = exec(execStr7,{silent:true}).stdout;
 		var data = exec(execStr8,{silent:true}).stdout;
+		var data = exec(execStr9,{silent:true}).stdout;
 	}
 	if(type == 6){
 		console.log("66666");
 		console.log(execStr8);
 		var data = exec(execStr7,{silent:true}).stdout;
 		var data = exec(execStr8,{silent:true}).stdout;
+		var data = exec(execStr9,{silent:true}).stdout;
 	}
 	var data = exec(execStr,{silent:true}).stdout;
 	i += 1;

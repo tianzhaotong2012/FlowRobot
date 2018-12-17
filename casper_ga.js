@@ -205,7 +205,6 @@ casper.then(function() {
 		console.log(elementArr[n]);
 	});	
 
-	this.capture(__dirname + '/ga-capture-singlepage-v2.png');
 
         casper.waitForSelector(elementArr[n], function() {
             this.click(elementArr[n]);
@@ -214,6 +213,10 @@ casper.then(function() {
             this.echo('failed founding #nocaptcha', 'INFO');
         });
 
+	this.wait(9000,function(){
+                this.capture(__dirname + '/ga-capture-singlepage-v2.png');
+                console.log("Finish!");
+        });
 });
 
 casper.run();

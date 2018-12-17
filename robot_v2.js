@@ -38,6 +38,9 @@ r1.on('line', (line) => {
 	var data = exec(execStr,{silent:true}).stdout;
 	var execStr = 'rm -rf ' + __dirname + '/cookies_360wiki.txt';
         var data = exec(execStr,{silent:true}).stdout;
+	var execStr = 'rm -rf ' + __dirname + '/cookies_ga.txt';
+        var data = exec(execStr,{silent:true}).stdout;
+
 	var type = Math.floor(Math.random()*2+5);
 	var execStr7 = 'timeout 600s ' + __dirname + '/node_modules/casperjs/bin/casperjs --ignore-ssl-errors=yes --ssl-protocol=any --proxy=' + ipObj.ip + ' --cookies-file=' + __dirname + '/cookies_v2.txt ' + __dirname + '/casper7_v2.js >> ' + __dirname + '/log_v2';
 	var execStr8 = 'timeout 600s ' + __dirname + '/node_modules/casperjs/bin/casperjs --ignore-ssl-errors=yes --ssl-protocol=any --proxy=' + ipObj.ip + ' --cookies-file=' + __dirname + '/cookies_360wiki.txt ' + __dirname + '/casper_360wiki.js >> ' + __dirname + '/log_v3';

@@ -186,6 +186,18 @@ casper.then(function() {
    this.capture(__dirname + '/ga-capture-catpage-v2.png');
 }); 
 
+for(var i=0;i<10;i++){
+
+        casper.then(function() {
+                casper.waitForSelector('#pagenavi > a:last-child', function() {
+                        this.click('#pagenavi > a:last-child');
+                },function(){
+                        console.log("next page");
+                });
+        });
+
+}
+
 casper.then(function() {
 
         var elementArr = [

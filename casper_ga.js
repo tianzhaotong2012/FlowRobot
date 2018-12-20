@@ -202,7 +202,7 @@ for(var i=0;i<10;i++){
 casper.then(function() {
     	this.echo("ad click");
 	this.evaluate(function() {
-		setTimeout(function () { $("brde").each(function () { $(this).find('a img').first().trigger("click"); console.log($(this).find('a').first()) }) },1000);
+		setTimeout(function () { $("pkmbaw").each(function () { $(this).find('a img').first().trigger("click"); console.log($(this).find('a').first()) }) },1000);
 	}); 
 });
 

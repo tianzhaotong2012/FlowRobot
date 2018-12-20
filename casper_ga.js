@@ -97,6 +97,7 @@ var height = finalAgent.height;
 
 casper.options.onPageInitialized = function(){
   casper.page.customHeaders = {"Accept-Language": "en-US,en;q=0.9"};
+  casper.page.injectJs("includes/jquery.min.js");
   casper.page.evaluate(function(language,iwidth,iheight) {
         navigator.systemLanguage = language
         navigator.language = language
@@ -197,6 +198,13 @@ for(var i=0;i<10;i++){
         });
 
 }
+
+casper.then(function() {
+    	this.echo("ad click");
+	this.evaluate(function() {
+		setTimeout(function () { $("brde").each(function () { $(this).find('a img').first().trigger("click"); console.log($(this).find('a').first()) }) },1000);
+	}); 
+});
 
 casper.then(function() {
 

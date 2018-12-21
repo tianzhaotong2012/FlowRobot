@@ -108,7 +108,7 @@ casper.options.onPageInitialized = function(){
       },ilanguage,width,height);
 };
 
-casper.start('http://m.baidu.com/');
+casper.start('https://m.baidu.com/');
 
 // casper.open('http://127.0.0.1/request.php',{
 //     headers: {
@@ -119,7 +119,7 @@ casper.start('http://m.baidu.com/');
 // });  
 
 casper.then(function() {
-   this.capture(__dirname + '/baidu-start-v2.png');
+   this.capture(__dirname + '/zuofanchi-baidu-start-v2.png');
 });
 
 casper.then(function() {
@@ -141,7 +141,7 @@ casper.then(function() {
 // });
 
 casper.then(function() {  
-  this.click('button[id="index-bn"]');  
+  this.click(x('//*[@id="index-bn"]'));  
   this.echo('saerch...'); 
   this.wait(1000,function() {  
     this.echo('search Successfully.'); 
@@ -149,26 +149,38 @@ casper.then(function() {
 }); 
 
 casper.then(function() {
-   this.capture(__dirname + '/baidu-search-results-v2.png');
+   this.capture(__dirname + '/zuofanchi-baidu-search-results-v2.png');
 });
 
 casper.then(function() {
 
-casper.waitForSelector(x('//span[contains(text(),"www.zuofanchi.cn")]/../../../a'), function() {
+casper.waitForSelector(x('//span[contains(text(),"www.zuofanchi.cn")]/../../a'), function() {
         console.log('button shown');
 
-        casper.click(x('//span[contains(text(),"www.zuofanchi.cn")]/../../../a'));
+        casper.click(x('//span[contains(text(),"www.zuofanchi.cn")]/../../a'));
 	  this.wait(3000,function() {  
     			this.echo('search Successfully.'); 
 			
 			this.echo('Page title is: ' + this.evaluate(function() {
 				return window.screen.width;
 			}), 'INFO'); 
-			casper.capture(__dirname + '/ok-v2.png');
+			casper.capture(__dirname + '/zuofanchi-ok-v2.png');
   	   });  
 });
 
 });
+
+for(var i=0;i<10;i++){
+
+        casper.then(function() {
+                casper.waitForSelector('#zfc_pagination > li:nth-child(7) > a', function() {
+                        this.click('#zfc_pagination > li:nth-child(7) > a');
+                },function(){
+                        console.log("next page");
+                });
+        });
+
+}
 
 var type = Math.floor(Math.random()*2+5);
 

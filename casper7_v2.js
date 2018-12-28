@@ -229,7 +229,11 @@ casper.waitForSelector('body > div > div.row.padding > div.side-menu > div.col-m
         casper.click('body > div > div.row.padding > div.side-menu > div.col-md-5 > div.section-1 > div.row > div:nth-child(7) > a');
     this.wait(6000,function() {  
           this.echo('search Successfully.'); 
-      casper.capture(__dirname + '/ok-v2.png');
+      	  this.page.switchToChildFrame(0);
+          this.echo(this.getPageContent());	  	
+	  casper.click('#v_ads');
+	  this.echo('click ad.');
+	  casper.capture(__dirname + '/ok-v2.png');
        });  
 });
 

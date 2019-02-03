@@ -26,8 +26,9 @@ cd /var/www/html   git clone https://github.com/tianzhaotong2012/node_proxy.git
 
 3、pm2
 export PATH=$PATH:/var/www/html/node/node-v8.12.0-linux-x64/bin  
-npm install pm2 -g   
+npm install -g pm2@3.2.2   
 pm2 list   
+cd /var/www/html/node_proxy/
 pm2 start /var/www/html/node_proxy/proxy.js
 
 4、FlowRobot

@@ -108,7 +108,25 @@ casper.options.onPageInitialized = function(){
       },ilanguage,width,height);
 };
 
-casper.start('https://m.baidu.com/');
+//from shenma search
+var fromUrl = 'https://so.m.sm.cn/s?q=%E5%81%9A%E9%A5%AD%E5%90%83%E7%BE%8E%E9%A3%9F%E7%BD%91&page=1&uc_param_str=dnntnwvepffrgibijbpr';
+casper.start(fromUrl);
+var targetUrl = 'http://www.zuofanchi.cn';
+casper.then(function(){
+	this.evaluate(function(itargetUrl){
+		console.log("URL:",itargetUrl);
+		var link = document.createElement('a');
+		link.setAttribute('href', itargetUrl);
+		link.setAttribute('id', "myTargetUrl");
+		link.innerHTML=itargetUrl;
+		document.body.appendChild(link);
+	},targetUrl);
+});
+casper.then(function() {
+		this.click('a#myTargetUrl');
+});
+
+//casper.start('https://m.baidu.com/');
 
 // casper.open('http://127.0.0.1/request.php',{
 //     headers: {
@@ -122,53 +140,53 @@ casper.then(function() {
    this.capture(__dirname + '/zuofanchi-baidu-start-v2.png');
 });
 
-casper.then(function() {
-   var type = Math.floor(Math.random()*3+1);
-   if(type == 1){
-         this.fill('form[id="index-form"]', { word: '做饭吃美食网' }, true);//填入form，进行搜索
-   }
-   if(type == 2){
-          this.fill('form[id="index-form"]', { word: '在家烹饪' }, true);//填入form，进行搜索
-   }
-   if(type == 3){
-	  this.fill('form[id="index-form"]', { word: '做饭吃美食' }, true);
-   }
+//casper.then(function() {
+//   var type = Math.floor(Math.random()*3+1);
+//   if(type == 1){
+//         this.fill('form[id="index-form"]', { word: '做饭吃美食网' }, true);//填入form，进行搜索
+//   }
+//   if(type == 2){
+//          this.fill('form[id="index-form"]', { word: 'www.zuofanchi.cn' }, true);//填入form，进行搜索
+//   }
+//   if(type == 3){
+//	  this.fill('form[id="index-form"]', { word: '做饭吃美食' }, true);
+//   }
    //this.fill('form[id="index-form"]', { word: '做饭吃美食网' }, true);
-});
+//});
 
 // casper.then(function() {
 //    this.fill('form[id="index-form"]', { word: '在家烹饪' }, true);//填入form，进行搜索
 // });
 
-casper.then(function() {  
-  this.click(x('//*[@id="index-bn"]'));  
-  this.echo('saerch...'); 
-  this.wait(1000,function() {  
-    this.echo('search Successfully.'); 
-  });  
-}); 
+//casper.then(function() {  
+//  this.click(x('//*[@id="index-bn"]'));  
+//  this.echo('saerch...'); 
+//  this.wait(1000,function() {  
+//    this.echo('search Successfully.'); 
+//  });  
+//}); 
 
 casper.then(function() {
    this.capture(__dirname + '/zuofanchi-baidu-search-results-v2.png');
 });
 
-casper.then(function() {
+//casper.then(function() {
 
-casper.waitForSelector(x('//span[contains(text(),"www.zuofanchi.cn")]/../../a'), function() {
-        console.log('button shown');
+//casper.waitForSelector(x('//span[contains(text(),"www.zuofanchi.cn")]/../../a'), function() {
+//        console.log('button shown');
 
-        casper.click(x('//span[contains(text(),"www.zuofanchi.cn")]/../../a'));
-	  this.wait(3000,function() {  
-    			this.echo('search Successfully.'); 
+//        casper.click(x('//span[contains(text(),"www.zuofanchi.cn")]/../../a'));
+//	  this.wait(3000,function() {  
+//    			this.echo('search Successfully.'); 
 			
-			this.echo('Page title is: ' + this.evaluate(function() {
-				return window.screen.width;
-			}), 'INFO'); 
-			casper.capture(__dirname + '/zuofanchi-ok-v2.png');
-  	   });  
-});
+//			this.echo('Page title is: ' + this.evaluate(function() {
+//				return window.screen.width;
+//			}), 'INFO'); 
+//			casper.capture(__dirname + '/zuofanchi-ok-v2.png');
+//  	   });  
+//});
 
-});
+//});
 
 for(var i=0;i<10;i++){
 
